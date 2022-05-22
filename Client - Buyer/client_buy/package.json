@@ -1,0 +1,14 @@
+{
+  "name": "item_Register",
+  "version": "1.0.0",
+  "description": "Item Register",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "type": "module"
+}
