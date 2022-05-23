@@ -1,6 +1,6 @@
 # ProjetoSD
 
-![Projeto Sistemas Distribuidos](https://github.com/aniziob/ProjetoSD/blob/main/Artefatos/Diagrama_do _Sistema Distribuido.gif.gif)
+![Projeto Sistemas Distribuidos](https://github.com/aniziob/ProjetoSD/blob/main/Artefatos/Diagrama_do _Sistema_Distribuido.gif)
 
 <!-- SD.jpg é o diagrama antigo -->
 
