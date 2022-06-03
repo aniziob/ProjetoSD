@@ -12,7 +12,7 @@ const make_post_promisse = (url, body) => {
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
-        }
+        };
         console.log(request_info.body);
         fetch(url, request_info)
             .then(response => response.json())
@@ -34,7 +34,7 @@ router.post("/register_item", (req, res) => {
     
     const body = req.body;
 
-    make_post_promisse("http://localhost:8001/register_item", body)
+    make_post_promisse("http://localhost:8001/register_item", body);
 
     return res.status(200).json({
         "msg": "Registro de item encaminhado para o banco de dados"

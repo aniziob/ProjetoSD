@@ -3,14 +3,18 @@ import { Router } from "express";
 
 const router = Router();
 
-// Banco de dados na perpectiva de um usuário
-var name = [];
-var price = [];
-var description = [];
-var img_link = [];
-var ids = [];
-var is_buyed = [];
-var quantity_purchased = [];
+const url_teste = "https://m.media-amazon.com/images/I/51aI1NrfVHL._AC_SX679_.jpg"
+
+
+// Banco de dados para apenas um usuário
+// Array de itens
+var name = ["Remédio 1", "Remédio 2"];
+var price = [1.0, 2.0];
+var description = ["Medicamento 1 (totalmente não NFT)", "Medicamento 2"];
+var img_link = [url_teste, url_teste];
+var ids = [0, 1];
+var is_buyed = [false, false];
+var quantity_purchased = [0, 0];
 
 var next_id = ids.length;
 
@@ -26,7 +30,7 @@ router.get("/buy_item",(req, res) =>{
         "is_buyed": is_buyed,
         "quantity_purchased": quantity_purchased,
     };
-    return res.json(body);
+    return res.status(200).json(body);
 })
 
 
@@ -46,7 +50,6 @@ router.post("/register_item", (req, res) => {
 
     next_id += 1;
     
-    // return res.status(200);
     return res.status(200).json({
         "msg": "Registro feito com sucesso!"
     });
@@ -56,25 +59,27 @@ router.post("/register_item", (req, res) => {
 // Modifica um atributo de um item no banco de dados
 router.post("/buy_itens", (req, res) => {
     const buyed_ids = req.body.ids;
-    const quantitys = req.body.quantitys;
+    const quantities = req.body.quantities;
 
-    console.log(buyed_ids);
-    console.log(quantitys);
+    console.log(`ids: ${buyed_ids}`);
+    console.log(`quantities: ${quantities}`);
 
     // function setIsBuyedAndQty(id, qty) {
     //     is_buyed[id] = true;
     //     quantity_purchased[id] = qty;
     // };
-    // function setQuantitys(qty) {
+    // function setQuantities(qty) {
     //     quantity_purchased[id] = qty;
     // };
     // buyed_ids.forEach(setIsBuyedAndQty);
     for (let i = 0; i < buyed_ids.length; i++) {
         
-        const  id = buyed_ids[i];
+        // id do item atual que vai ser modificado
+        const id = buyed_ids[i];
 
+        // modifica o item com id = buyed_ids[i]
         is_buyed[id] = true;
-        quantity_purchased[id] = quantitys[i];
+        quantity_purchased[id] = quantities[i];
     }
 
     return res.status(200).json({

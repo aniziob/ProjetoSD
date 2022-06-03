@@ -1,9 +1,9 @@
-Criar o arquivo package
-npm init
+Criar o arquivo package <br>
+`npm init`
 
-//Gerencia as requisições, rotas e URLs, entre outras funcionalidades
-npm install express
+//Express gerencia as requisições, rotas e URLs, entre outras funcionalidades <br>
+`npm install express cors node-fetch`
 
-npm install -D nodemon 
+`npm install -D nodemon` <br>
 Precisei especificar o arquivo JS que vai iniciar com o nodemon no package.json
 então para inicialo basta digitar npm start "start é o nome dado para a variavel"
