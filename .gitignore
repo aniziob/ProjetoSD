@@ -1,0 +1,9 @@
+
+# /API1/node_modules
+# /API2/node_modules
+
+# /web_item_buy/client_register/node_modules
+# /web_item_register/node_modules
+
+# Ignora todas as pastas node modules
+node_modules
