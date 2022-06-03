@@ -1,0 +1,15 @@
+{
+  "type": "module",
+  "name": "item_register",
+  "version": "1.0.0",
+  "description": "Registrador de itens web usando HTML + CSS + JS",
+  "main": "app.js",
+  "author": "elotd",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node src/app.js"
+  }
+}

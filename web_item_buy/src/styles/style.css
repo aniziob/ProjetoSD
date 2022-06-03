@@ -48,7 +48,8 @@ html, body {
 /* Buttons -  Delete and Like */
 .buttons {
   position: relative;
-  padding-top: 30px;
+  /* padding-top: 30px; */
+  align-self: center;
   margin-right: 60px;
 }
 
@@ -57,7 +58,7 @@ html, body {
   cursor: pointer;
   width: 18px;
   height: 17px;
-  background: url("shopping-cart.png") no-repeat center;
+  background: url("../img/shopping-cart.png") no-repeat center;
   background-size: 100%;
   margin-right: 20px;
 }
@@ -67,7 +68,7 @@ html, body {
   top: 9px;
   left: 15px;
   display: inline-block;
-  background: url('twitter-heart.png');
+  background: url('../img/twitter-heart.png');
   width: 60px;
   height: 60px;
   background-size: 2900%;
@@ -91,14 +92,20 @@ html, body {
 
 /* Product Image */
 .image {
-  margin-right: 50px;
+  margin-right: 20px;
+  /* width: 20px; */
+  /* max-width: 20px; */
+}
+.image > img {
+  width: 60px;
+  min-width: 100px;
 }
 
 /* Product Description */
 .description {
-  padding-top: 10px;
-  margin-right: 60px;
+  margin-right: 10px;
   width: 115px;
+  align-self: center;
 }
 
 .description span {
@@ -106,21 +113,24 @@ html, body {
   font-size: 14px;
   color: #43484D;
   font-weight: 400;
+  
 }
 
+/* Seletor vazio */
+/* 
 .description span:first-child {
-  margin-bottom: 5px;
+
 }
 .description span:last-child {
-  font-weight: 300;
-  margin-top: 8px;
-  color: #86939E;
-}
+
+} 
+*/
 
 /* Product Quantity */
 .quantity {
-  padding-top: 20px;
-  margin-right: 60px;
+  /* padding-top: 20px; */
+  margin-right: 10px;
+  align-self: center;
 }
 .quantity input {
   -webkit-appearance: none;
@@ -153,12 +163,21 @@ input:focus {
 
 /* Total Price */
 .total-price {
-  width: 83px;
-  padding-top: 27px;
+  width: 110px;
+  /* padding-top: 27px; */
   text-align: center;
   font-size: 16px;
   color: #43484D;
   font-weight: 300;
+
+  flex-direction: column;
+  align-self: center;
+}
+.total-price > p {
+  margin: 0 0 16px 0;
+}
+.total-price > span {
+  /* vazio */
 }
 
 /* Responsive */
