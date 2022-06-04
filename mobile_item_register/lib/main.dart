@@ -31,6 +31,7 @@ class ItemRegisterScreen extends StatelessWidget {
       body: const Center(
         child: SizedBox(
           width: 400,
+          // height: 550,
           child: Card(
             child: ItemRegisterForm(),
           ),
@@ -231,9 +232,9 @@ class _ItemRegisterFormState extends State<ItemRegisterForm> {
 
     // Define a url e body da requisição
     const url = "http://localhost:8002/register_item";
-    var body = jsonEncode(<String, String>{
+    var body = jsonEncode(<String, dynamic>{
       "name": _nameTextController.text,
-      "price": _priceController.text,
+      "price": double.parse(_priceController.text),
       "description": _descriptionController.text,
       "img_link": _imageLinkController.text,
     });
