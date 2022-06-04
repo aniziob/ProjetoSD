@@ -17,7 +17,7 @@ class BuyedPage extends StatefulWidget {
 
 class _BuyedPageState extends State<BuyedPage> {
   late Future<Itens> futureItens;
-  List<int> _quantitys = [];
+  List<int> _quantities = [];
 
   // _CartPageState(List<Item> itens);
 
@@ -30,7 +30,7 @@ class _BuyedPageState extends State<BuyedPage> {
           print("Future Itens, ${snapshot.data}");
           Itens? data = snapshot.data;
           if (data != null) {
-            _quantitys = data.quantityPurchaseds; // Atualiza _quantitys
+            _quantities = data.quantityPurchaseds; // Atualiza _quantities
             return _buildTiles(data);
           } else {
             return const CircularProgressIndicator();
@@ -56,18 +56,20 @@ class _BuyedPageState extends State<BuyedPage> {
     // // print(itens.ids.length);
     // print("=-----=");
 
+    var hasBuildedDivider = false;
+
     return ListView.builder(
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (context, i) {
-        if (i.isOdd) return const Divider();
+        if (i.isOdd && !hasBuildedDivider) return const Divider();
+        hasBuildedDivider = false; // reset
 
         //            i = 0 1 2 3 4 5 6 7 8 9 ...
         // index = f(i) = 0 0 1 1 2 2 3 3 4 4 ...
         final index = i ~/ 2;
-        // print(index);
 
         if (index < data.ids.length && data.isBuyeds[index]) {
-          var currentItem = Item(
+          final currentItem = Item(
             id: data.ids[index],
             name: data.names[index],
             price: data.prices[index],
@@ -82,24 +84,36 @@ class _BuyedPageState extends State<BuyedPage> {
             // height: 500.0,
             child: ListTile(
               title: Text(
-                data.names[index],
+                currentItem.name,
                 style: const TextStyle(fontSize: 15),
               ),
-              leading: Image.network(
-                data.imageLinks[index],
-                width: 80.0,
-              ),
+              leading: Image.network(currentItem.imageLink, width: 80.0,
+                  errorBuilder: (_, object, stackTrace) {
+                return const SizedBox(
+                  width: 80.0, // Make Text wrap and allow white background
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(color: Colors.white),
+                    child: Text(
+                      "Error loading image from link",
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                );
+              }),
               subtitle: Text(
-                data.descriptions[index],
+                currentItem.description,
                 style: const TextStyle(fontSize: 15),
               ),
               trailing: SizedBox(
                 width: 160.0,
                 // height: 100.0,
-                child: Text("Qty: ${_quantitys[index]}"),
+                child: Text("Qty: ${_quantities[index]}"),
               ),
             ),
           );
+        } else if (index < data.ids.length && !data.isBuyeds[index]) {
+          hasBuildedDivider = true;
+          return const SizedBox.shrink();
         } else {
           // return const Text("Vazio");
           return const ListTile(

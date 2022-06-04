@@ -63,23 +63,24 @@ class MyCartButton extends StatelessWidget {
 
 class MyBuyButton extends StatelessWidget {
   final List<Item> itensToBuy;
-  final List<int> quantitys;
+  final List<int> quantities;
 
   const MyBuyButton(
-      {Key? key, required this.itensToBuy, required this.quantitys})
+      {Key? key, required this.itensToBuy, required this.quantities})
       : super(key: key);
 
-  Future<Itens?> _buyItens(List<Item> itensToBuy, List<int> quantitys) async {
+  Future<Itens?> _buyItens(
+      List<Item> itensToBuy, List<int> newerQuantities) async {
     const url = "http://localhost:8001/buy_itens";
+
     var ids = <int>[];
-    var quantitys = <int>[];
-    for (Item item in itensToBuy) {
-      ids.add(item.id);
-      quantitys.add(item.quantityPurchased);
-    }
+    ids = itensToBuy.map((item) => item.id).toList();
+
+    // Filter itens with quantities == 0
+
     var body = jsonEncode(<String, List<int>>{
       "ids": ids,
-      "quantitys": quantitys,
+      "quantities": newerQuantities,
     });
     final response = await http.post(
       Uri.parse(url),
@@ -111,7 +112,7 @@ class MyBuyButton extends StatelessWidget {
       ),
       onPressed: () => {
         // http.post da compra
-        _buyItens(itensToBuy, quantitys)
+        _buyItens(itensToBuy, quantities)
         // Mostra mensagem "Itens comprados"
       },
     );
